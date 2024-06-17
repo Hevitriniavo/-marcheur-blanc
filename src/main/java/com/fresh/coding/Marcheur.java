@@ -1,27 +1,40 @@
 package com.fresh.coding;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import lombok.AllArgsConstructor;
+
+import java.util.*;
+
+@AllArgsConstructor
 public class Marcheur {
-    private String nom;
+    private Lieu lieuActuel;
 
-    public Trajet marche(Rue rue) {
-        return this.marcherPossible(rue).getFirst();
-    }
+    public List<Lieu> marcherVers(Lieu destination, Carte carte) {
+        List<Lieu> parcours = new ArrayList<>();
+        Set<Lieu> lieuxVisites = new HashSet<>();
+        Random random = new Random();
 
-    public  List<Trajet> marcherPossible(Rue chemin){
-        var depart = chemin.getLieuDepart();
-        var arrivee = chemin.getLieuArrivee();
-        var currentLieu = depart;
-        List<Rue> rues = chemin.getCarte().getRues();
-        List<Trajet> lieuPossibles = new ArrayList<>();
-        while (!currentLieu.equals(arrivee)){
-            for (Rue rue: rues){
-                System.out.println(rue);
+        parcours.add(lieuActuel);
+        lieuxVisites.add(lieuActuel);
+
+        while (!lieuActuel.equals(destination)) {
+            List<Rue> ruesPossibles = new ArrayList<>();
+            for (Rue rue : carte.getRues()) {
+                if (rue.getLieuDepart().equals(lieuActuel) && !lieuxVisites.contains(rue.getLieuArrivee())) {
+                    ruesPossibles.add(rue);
+                }
             }
-        }
-        return lieuPossibles;
-    }
 
+            if (ruesPossibles.isEmpty()) {
+                System.out.println("Aucune rue disponible depuis " + lieuActuel + ". Retour en arrière.");
+                return parcours;
+            }
+
+            Rue rueChoisie = ruesPossibles.get(random.nextInt(ruesPossibles.size()));
+            lieuActuel = rueChoisie.getLieuArrivee();
+            parcours.add(lieuActuel);
+            lieuxVisites.add(lieuActuel);
+        }
+        return parcours;
+    }
 }

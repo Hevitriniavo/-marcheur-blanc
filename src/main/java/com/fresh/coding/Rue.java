@@ -13,5 +13,4 @@ import lombok.ToString;
 public class Rue {
     private Lieu lieuDepart;
     private Lieu lieuArrivee;
-    private Carte carte;
 }

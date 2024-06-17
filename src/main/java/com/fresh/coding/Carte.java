@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +17,12 @@ import java.util.stream.Collectors;
 public class Carte {
     private List<Rue> rues;
 
-    public Carte(Rue... rues) {
-        this.rues = Arrays.stream(rues).collect(Collectors.toList());
+    public Carte() {
+        rues = new ArrayList<>();
     }
+
+    public void ajouterRue(Rue rue) {
+        rues.add(rue);
+    }
+
 }
