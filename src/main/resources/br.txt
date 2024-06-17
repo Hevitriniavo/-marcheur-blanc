@@ -1,0 +1,40 @@
+carte:
+ - Liste de rue
+
+  Lieux:
+   - nom
+
+Rue
+- lieu depart
+- lieux arrivée
+
+marcheur
+ - nom
+
+ Marche;
+  - list ordonner de lieux
+
+var carte = new Carte(
+  new Rue(marais, sekolintsika),
+  new Rue(sekolintsika, marais),
+  new Rue(sekolintsika, Hei),
+  new Rue(hei, sekolintsika),
+  new Rue(hei, pullman),
+  new Rue(pullman, hei),
+  new Rue( hei, balancoire),
+   new Rue( balancoire, hei),
+  new Rue(balancoire,pullman),
+  new Rue(pullman,balancoire),
+  new Rue( pullman, nexta),
+  new Rue( nexta, pullman),
+  new Rue( balancoire, boulevard),
+  new Rue( boulevard, balancoire),
+  new Rue( boulevard, esti)
+  new Rue( esti, boulevard),
+  new Rue( esti, balancoire),
+  new Rue( balancoire, esti)
+)
+
+direction(Lieu depart, Lieux  arriver) {
+  retur new Rue( depart, depart)
+}
